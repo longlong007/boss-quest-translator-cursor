@@ -46,3 +46,36 @@
   font-size: 22rpx;
   color: rgba(255, 255, 255, 0.4);
 }
+
+.examples-section {
+  margin-top: 28rpx;
+}
+
+.examples-title {
+  display: block;
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 16rpx;
+}
+
+.examples-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -8rpx;
+}
+
+.example-chip {
+  margin: 8rpx;
+  padding: 12rpx 24rpx;
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1rpx solid rgba(255, 255, 255, 0.15);
+  border-radius: 32rpx;
+  line-height: 1.4;
+}
+
+.example-chip:active {
+  background: rgba(233, 69, 96, 0.25);
+  border-color: rgba(233, 69, 96, 0.5);
+}

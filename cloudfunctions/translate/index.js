@@ -11,6 +11,14 @@ cloud.init({
 const db = cloud.database()
 
 exports.main = async (event) => {
+  if (event.action === 'ping') {
+    return {
+      success: true,
+      pong: true,
+      ts: Date.now()
+    }
+  }
+
   const mode = event.mode === 'fun' ? 'fun' : 'serious'
 
   const inputCheck = validateInput(event.text)

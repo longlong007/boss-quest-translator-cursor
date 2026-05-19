@@ -1,5 +1,6 @@
-const { translate } = require('../../utils/cloud')
+const { translate, isValidCloudEnv } = require('../../utils/cloud')
 const config = require('../../config')
+const examples = require('../../data/examples')
 
 Page({
   data: {
@@ -7,7 +8,8 @@ Page({
     inputText: '',
     loading: false,
     canSubmit: false,
-    maxLength: config.maxInputLength
+    maxLength: config.maxInputLength,
+    examples
   },
 
   onLoad(options) {
@@ -35,6 +37,15 @@ Page({
     })
   },
 
+  onExampleTap(e) {
+    const { text } = e.currentTarget.dataset
+    if (!text) return
+    this.setData({
+      inputText: text,
+      canSubmit: true
+    })
+  },
+
   async onTranslate() {
     const text = this.data.inputText.trim()
     if (!text) {
@@ -46,7 +57,13 @@ Page({
       return
     }
 
+    if (!isValidCloudEnv(config.cloudEnv)) {
+      getApp().showError('请先在 config.js 配置完整云环境 ID')
+      return
+    }
+
     this.setData({ loading: true })
+    wx.showLoading({ title: 'AI 翻译中…', mask: true })
 
     try {
       const result = await translate(text, this.data.mode)
@@ -68,12 +85,20 @@ Page({
     } catch (err) {
       console.error('translate error', err)
       const msg = (err && (err.errMsg || err.message)) || ''
-      if (/timeout/i.test(msg)) {
-        getApp().showError('翻译超时，请检查云函数已部署且 API 可访问')
+      if (msg === 'INVALID_CLOUD_ENV') {
+        getApp().showError('云环境 ID 未配置或格式错误')
+      } else if (/timeout/i.test(msg)) {
+        wx.showModal({
+          title: '调用超时',
+          content:
+            '1. 确认 config.js 中 cloudEnv 为完整 ID（cloud1-xxx）\n2. 右键 translate 云函数 → 上传并部署\n3. 云函数环境变量已配置 LLM_API_KEY\n4. 在云开发控制台用「测试」直接调 translate 排查',
+          showCancel: false
+        })
       } else {
         getApp().showError('网络异常，请稍后重试')
       }
     } finally {
+      wx.hideLoading()
       setTimeout(() => {
         this.setData({ loading: false })
       }, config.translateCooldownMs)

@@ -20,6 +20,21 @@
     <text class="char-count">{{inputText.length}}/{{maxLength}}</text>
   </view>
 
+  <view class="examples-section">
+    <text class="examples-title">试试这些案例</text>
+    <view class="examples-list">
+      <view
+        class="example-chip"
+        wx:for="{{examples}}"
+        wx:key="label"
+        data-text="{{item.text}}"
+        bindtap="onExampleTap"
+      >
+        {{item.label}}
+      </view>
+    </view>
+  </view>
+
   <button
     class="btn-primary"
     bindtap="onTranslate"

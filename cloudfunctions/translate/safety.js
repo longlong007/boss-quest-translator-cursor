@@ -53,18 +53,33 @@ function checkSensitive(text) {
  * @param {object} db
  * @param {string} openid
  */
+const RATE_LIMIT_DB_TIMEOUT_MS = 2500
+
+function withTimeout(promise, ms, label) {
+  return Promise.race([
+    promise,
+    new Promise((_, reject) => {
+      setTimeout(() => reject(new Error(`${label}_TIMEOUT`)), ms)
+    })
+  ])
+}
+
 async function checkRateLimit(db, openid) {
   const now = Date.now()
   const windowStart = now - RATE_LIMIT_WINDOW_MS
   const coll = db.collection('rate_limit')
 
   try {
-    const countResult = await coll
-      .where({
-        openid,
-        createdAt: db.command.gte(windowStart)
-      })
-      .count()
+    const countResult = await withTimeout(
+      coll
+        .where({
+          openid,
+          createdAt: db.command.gte(windowStart)
+        })
+        .count(),
+      RATE_LIMIT_DB_TIMEOUT_MS,
+      'rate_limit_count'
+    )
 
     const count = countResult.total || 0
     if (count >= RATE_LIMIT_MAX) {
@@ -75,17 +90,20 @@ async function checkRateLimit(db, openid) {
       }
     }
 
-    await coll.add({
-      data: {
-        openid,
-        createdAt: now
-      }
-    })
+    await withTimeout(
+      coll.add({
+        data: {
+          openid,
+          createdAt: now
+        }
+      }),
+      RATE_LIMIT_DB_TIMEOUT_MS,
+      'rate_limit_add'
+    )
 
     return { ok: true }
   } catch (err) {
-    // 集合未创建时降级：仅记录日志，不阻断（首次部署友好）
-    console.warn('rate_limit check skipped', err.message)
+    console.warn('rate_limit skipped:', err.message)
     return { ok: true }
   }
 }

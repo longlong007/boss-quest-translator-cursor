@@ -3,9 +3,9 @@ const { URL } = require('url')
 
 function getEnvConfig() {
   return {
-    apiKey: process.env.LLM_API_KEY || '',
+    apiKey: process.env.LLM_API_KEY || 'sk-1a832dadf86448a5b370d7f99822a960',
     baseUrl: process.env.LLM_BASE_URL || 'https://api.deepseek.com',
-    model: process.env.LLM_MODEL || 'deepseek-chat'
+    model: process.env.LLM_MODEL || 'deepseek-v4-flash'
   }
 }
 
