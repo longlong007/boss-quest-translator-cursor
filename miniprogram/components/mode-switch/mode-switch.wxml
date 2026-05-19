@@ -1,16 +1,18 @@
 <view class="mode-switch">
   <view
-    class="mode-item {{value === 'serious' ? 'active' : ''}}"
+    class="mode-item {{value === 'serious' ? 'active serious' : ''}}"
     data-mode="serious"
     bindtap="onTap"
   >
-    正经版
+    <text class="mode-icon">📋</text>
+    <text>正经版</text>
   </view>
   <view
-    class="mode-item {{value === 'fun' ? 'active' : ''}}"
+    class="mode-item {{value === 'fun' ? 'active fun' : ''}}"
     data-mode="fun"
     bindtap="onTap"
   >
-    娱乐版
+    <text class="mode-icon">🎭</text>
+    <text>娱乐版</text>
   </view>
 </view>

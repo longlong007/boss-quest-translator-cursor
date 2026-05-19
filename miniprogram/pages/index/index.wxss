@@ -1,42 +1,94 @@
+.page-index {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.hero-deco {
+  position: absolute;
+  font-size: 64rpx;
+  opacity: 0.85;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-deco-left {
+  top: 24rpx;
+  left: 24rpx;
+}
+
+.hero-deco-right {
+  top: 48rpx;
+  right: 32rpx;
+  font-size: 56rpx;
+}
+
+.page-index .container {
+  position: relative;
+  z-index: 1;
+}
+
 .page-index .header {
   text-align: center;
-  padding: 24rpx 0 8rpx;
+  padding: 16rpx 0 8rpx;
+}
+
+.logo-badge {
+  width: 88rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  margin: 0 auto 20rpx;
+  font-size: 40rpx;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(145deg, #ffc048, #ff8c42);
+  border-radius: 28rpx;
+  box-shadow: 0 10rpx 24rpx rgba(255, 140, 66, 0.4);
 }
 
 .page-index .title {
   display: block;
   font-size: 44rpx;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: 2rpx;
+  font-weight: 800;
+  color: #2d2d2d;
+  letter-spacing: 1rpx;
 }
 
 .page-index .slogan {
   display: block;
   font-size: 26rpx;
-  color: rgba(255, 255, 255, 0.55);
+  color: #e67e22;
   margin-top: 12rpx;
+  font-weight: 500;
 }
 
 .input-wrap {
   position: relative;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 20rpx;
-  border: 1rpx solid rgba(255, 255, 255, 0.12);
-  padding: 24rpx 28rpx 48rpx;
-  min-height: 240rpx;
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 24rpx 28rpx 52rpx;
+  min-height: 220rpx;
+  box-shadow: 0 8rpx 28rpx rgba(255, 159, 67, 0.15);
+  border: 2rpx solid #ffe0b8;
+}
+
+.input-label {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #ff8c42;
+  margin-bottom: 16rpx;
 }
 
 .input-area {
   width: 100%;
-  min-height: 200rpx;
+  min-height: 180rpx;
   font-size: 30rpx;
-  line-height: 1.6;
-  color: #f5f5f5;
+  line-height: 1.65;
+  color: #333;
 }
 
 .placeholder {
-  color: rgba(255, 255, 255, 0.35);
+  color: #c4a882;
 }
 
 .char-count {
@@ -44,7 +96,7 @@
   right: 28rpx;
   bottom: 16rpx;
   font-size: 22rpx;
-  color: rgba(255, 255, 255, 0.4);
+  color: #c9a87c;
 }
 
 .examples-section {
@@ -53,8 +105,9 @@
 
 .examples-title {
   display: block;
-  font-size: 24rpx;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #d35400;
   margin-bottom: 16rpx;
 }
 
@@ -66,16 +119,24 @@
 
 .example-chip {
   margin: 8rpx;
-  padding: 12rpx 24rpx;
+  padding: 14rpx 26rpx;
   font-size: 24rpx;
-  color: rgba(255, 255, 255, 0.85);
-  background: rgba(255, 255, 255, 0.08);
-  border: 1rpx solid rgba(255, 255, 255, 0.15);
+  color: #e65100;
+  background: #fff;
+  border: 2rpx solid #ffd59e;
   border-radius: 32rpx;
   line-height: 1.4;
+  box-shadow: 0 4rpx 12rpx rgba(255, 180, 100, 0.2);
 }
 
 .example-chip:active {
-  background: rgba(233, 69, 96, 0.25);
-  border-color: rgba(233, 69, 96, 0.5);
+  background: #fff3e0;
+  border-color: #ff9f43;
+  transform: scale(0.98);
+}
+
+.btn-translate .btn-text {
+  display: block;
+  text-align: center;
+  line-height: 1;
 }

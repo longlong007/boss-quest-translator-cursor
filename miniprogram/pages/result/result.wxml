@@ -1,58 +1,63 @@
-<view class="container page-result" wx:if="{{ready}}">
-  <view class="mode-tag {{mode === 'fun' ? 'fun' : 'serious'}}">
-    {{modeLabel}}
-  </view>
+<view class="page-result" wx:if="{{ready}}">
+  <view class="container">
+    <view class="result-header">
+      <view class="mode-tag {{mode === 'fun' ? 'fun' : 'serious'}}">
+        <text class="tag-icon">{{mode === 'fun' ? '🎭' : '📋'}}</text>
+        <text>{{modeLabel}}</text>
+      </view>
+    </view>
 
-  <view class="card quote-card">
-    <view class="card-title">老板原话</view>
-    <view class="card-body quote">「{{text}}」</view>
-  </view>
+    <view class="card quote-card">
+      <view class="card-title">老板原话</view>
+      <view class="card-body quote">「{{text}}」</view>
+    </view>
 
-  <block wx:if="{{mode === 'serious'}}">
-    <view class="card" wx:if="{{sections.intent}}">
-      <view class="card-title">真实意图</view>
-      <view class="card-body">{{sections.intent}}</view>
-    </view>
-    <view class="card" wx:if="{{sections.priority}}">
-      <view class="card-title">隐含优先级</view>
-      <view class="card-body">{{sections.priority}}</view>
-    </view>
-    <view class="card" wx:if="{{sections.risks}}">
-      <view class="card-title">风险点</view>
-      <view class="card-body">{{sections.risks}}</view>
-    </view>
-    <view class="card highlight" wx:if="{{sections.suggestion}}">
-      <view class="card-title">建议回应</view>
-      <view class="card-body">{{sections.suggestion}}</view>
-    </view>
-  </block>
+    <block wx:if="{{mode === 'serious'}}">
+      <view class="card card-serious" wx:if="{{sections.intent}}">
+        <view class="card-title">真实意图</view>
+        <view class="card-body">{{sections.intent}}</view>
+      </view>
+      <view class="card card-serious" wx:if="{{sections.priority}}">
+        <view class="card-title">隐含优先级</view>
+        <view class="card-body">{{sections.priority}}</view>
+      </view>
+      <view class="card card-serious" wx:if="{{sections.risks}}">
+        <view class="card-title">风险点</view>
+        <view class="card-body">{{sections.risks}}</view>
+      </view>
+      <view class="card highlight highlight-serious" wx:if="{{sections.suggestion}}">
+        <view class="card-title">建议回应</view>
+        <view class="card-body">{{sections.suggestion}}</view>
+      </view>
+    </block>
 
-  <block wx:else>
-    <view class="card" wx:if="{{sections.humanTalk}}">
-      <view class="card-title">翻译版人话</view>
-      <view class="card-body">{{sections.humanTalk}}</view>
-    </view>
-    <view class="card" wx:if="{{sections.innerOS}}">
-      <view class="card-title">内心 OS</view>
-      <view class="card-body">{{sections.innerOS}}</view>
-    </view>
-    <view class="card highlight" wx:if="{{sections.survivalTip}}">
-      <view class="card-title">生存建议</view>
-      <view class="card-body">{{sections.survivalTip}}</view>
-    </view>
-  </block>
+    <block wx:else>
+      <view class="card card-fun" wx:if="{{sections.humanTalk}}">
+        <view class="card-title">翻译版人话</view>
+        <view class="card-body">{{sections.humanTalk}}</view>
+      </view>
+      <view class="card card-fun" wx:if="{{sections.innerOS}}">
+        <view class="card-title">内心 OS</view>
+        <view class="card-body">{{sections.innerOS}}</view>
+      </view>
+      <view class="card highlight highlight-fun" wx:if="{{sections.survivalTip}}">
+        <view class="card-title">生存建议</view>
+        <view class="card-body">{{sections.survivalTip}}</view>
+      </view>
+    </block>
 
-  <view class="card" wx:if="{{showRaw}}">
-    <view class="card-title">完整回复</view>
-    <view class="card-body">{{raw}}</view>
-  </view>
+    <view class="card" wx:if="{{showRaw}}">
+      <view class="card-title">完整回复</view>
+      <view class="card-body">{{raw}}</view>
+    </view>
 
-  <view class="actions">
-    <button class="btn-secondary" bindtap="onCopy">复制全文</button>
-    <button class="btn-secondary" bindtap="onAgain">再译一条</button>
-  </view>
+    <view class="actions">
+      <button class="btn-secondary" bindtap="onCopy">复制全文</button>
+      <button class="btn-secondary" bindtap="onAgain">再译一条</button>
+    </view>
 
-  <view class="disclaimer" wx:if="{{mode === 'fun'}}">
-    以上内容仅供娱乐吐槽，请勿对号入座或用于人身攻击。
+    <view class="disclaimer" wx:if="{{mode === 'fun'}}">
+      🎭 以上内容仅供娱乐吐槽，请勿对号入座～
+    </view>
   </view>
 </view>

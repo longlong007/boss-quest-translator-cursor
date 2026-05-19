@@ -1,23 +1,40 @@
 .mode-switch {
   display: flex;
-  background: rgba(0, 0, 0, 0.25);
-  border-radius: 16rpx;
-  padding: 6rpx;
-  margin: 32rpx 0 24rpx;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 20rpx;
+  padding: 8rpx;
+  margin: 28rpx 0 24rpx;
+  box-shadow: 0 6rpx 20rpx rgba(255, 159, 67, 0.12);
+  border: 2rpx solid #ffe8c8;
 }
 
 .mode-item {
   flex: 1;
-  text-align: center;
-  padding: 20rpx 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+  padding: 22rpx 0;
   font-size: 28rpx;
-  color: rgba(255, 255, 255, 0.55);
-  border-radius: 12rpx;
+  color: #a08060;
+  border-radius: 14rpx;
   transition: all 0.2s;
 }
 
-.mode-item.active {
-  background: rgba(233, 69, 96, 0.9);
+.mode-icon {
+  font-size: 32rpx;
+}
+
+.mode-item.active.serious {
+  background: linear-gradient(135deg, #74b9ff, #0984e3);
   color: #fff;
   font-weight: 600;
+  box-shadow: 0 6rpx 16rpx rgba(9, 132, 227, 0.3);
+}
+
+.mode-item.active.fun {
+  background: linear-gradient(135deg, #fd79a8, #e84393);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 6rpx 16rpx rgba(232, 67, 147, 0.3);
 }

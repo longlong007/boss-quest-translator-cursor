@@ -1,53 +1,60 @@
-<view class="container page-index">
-  <view class="header">
-    <text class="title">老板需求翻译器</text>
-    <text class="slogan">听懂老板，少踩坑</text>
-  </view>
+<view class="page-index">
+  <view class="hero-deco hero-deco-left">☀️</view>
+  <view class="hero-deco hero-deco-right">💼</view>
 
-  <mode-switch value="{{mode}}" bind:change="onModeChange" />
+  <view class="container">
+    <view class="header">
+      <view class="logo-badge">译</view>
+      <text class="title">老板需求翻译器</text>
+      <text class="slogan">听懂老板，快乐打工 ✨</text>
+    </view>
 
-  <view class="input-wrap">
-    <textarea
-      class="input-area"
-      placeholder="例如：这个需求很简单，周末加一下"
-      placeholder-class="placeholder"
-      maxlength="{{maxLength}}"
-      value="{{inputText}}"
-      bindinput="onInput"
-      auto-height
-      show-confirm-bar="{{false}}"
-    />
-    <text class="char-count">{{inputText.length}}/{{maxLength}}</text>
-  </view>
+    <mode-switch value="{{mode}}" bind:change="onModeChange" />
 
-  <view class="examples-section">
-    <text class="examples-title">试试这些案例</text>
-    <view class="examples-list">
-      <view
-        class="example-chip"
-        wx:for="{{examples}}"
-        wx:key="label"
-        data-text="{{item.text}}"
-        bindtap="onExampleTap"
-      >
-        {{item.label}}
+    <view class="input-wrap">
+      <view class="input-label">老板说了啥？</view>
+      <textarea
+        class="input-area"
+        placeholder="例如：这个需求很简单，周末加一下"
+        placeholder-class="placeholder"
+        maxlength="{{maxLength}}"
+        value="{{inputText}}"
+        bindinput="onInput"
+        auto-height
+        show-confirm-bar="{{false}}"
+      />
+      <text class="char-count">{{inputText.length}}/{{maxLength}}</text>
+    </view>
+
+    <view class="examples-section">
+      <text class="examples-title">🔥 试试这些名场面</text>
+      <view class="examples-list">
+        <view
+          class="example-chip"
+          wx:for="{{examples}}"
+          wx:key="label"
+          data-text="{{item.text}}"
+          bindtap="onExampleTap"
+        >
+          {{item.label}}
+        </view>
       </view>
     </view>
-  </view>
 
-  <button
-    class="btn-primary"
-    bindtap="onTranslate"
-    loading="{{loading}}"
-    disabled="{{loading || !canSubmit}}"
-  >
-    {{loading ? '翻译中…' : '开始翻译'}}
-  </button>
+    <button
+      class="btn-primary btn-translate"
+      bindtap="onTranslate"
+      loading="{{loading}}"
+      disabled="{{loading || !canSubmit}}"
+    >
+      <text class="btn-text">{{loading ? '翻译中…' : '开始翻译'}}</text>
+    </button>
 
-  <view class="disclaimer" wx:if="{{mode === 'fun'}}">
-    娱乐版仅供吐槽解压，内容虚构幽默，勿对号入座。
-  </view>
-  <view class="disclaimer" wx:else>
-    正经版帮你拆解真实诉求，不确定处会标注为假设。
+    <view class="disclaimer disclaimer-fun" wx:if="{{mode === 'fun'}}">
+      🎭 娱乐版仅供吐槽解压，虚构幽默，勿对号入座～
+    </view>
+    <view class="disclaimer" wx:else>
+      📋 正经版帮你拆解真实诉求，不确定处会标注为假设。
+    </view>
   </view>
 </view>

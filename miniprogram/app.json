@@ -5,10 +5,10 @@
   ],
   "window": {
     "navigationBarTitleText": "老板需求翻译器",
-    "navigationBarBackgroundColor": "#1a1a2e",
+    "navigationBarBackgroundColor": "#FFB347",
     "navigationBarTextStyle": "white",
-    "backgroundColor": "#16213e",
-    "backgroundTextStyle": "light"
+    "backgroundColor": "#FFF8E7",
+    "backgroundTextStyle": "dark"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",
