@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "mode-switch": "/components/mode-switch/mode-switch"
+  },
+  "navigationBarTitleText": "老板需求翻译器"
+}

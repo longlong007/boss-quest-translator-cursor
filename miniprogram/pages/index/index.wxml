@@ -1,0 +1,38 @@
+<view class="container page-index">
+  <view class="header">
+    <text class="title">老板需求翻译器</text>
+    <text class="slogan">听懂老板，少踩坑</text>
+  </view>
+
+  <mode-switch value="{{mode}}" bind:change="onModeChange" />
+
+  <view class="input-wrap">
+    <textarea
+      class="input-area"
+      placeholder="例如：这个需求很简单，周末加一下"
+      placeholder-class="placeholder"
+      maxlength="{{maxLength}}"
+      value="{{inputText}}"
+      bindinput="onInput"
+      auto-height
+      show-confirm-bar="{{false}}"
+    />
+    <text class="char-count">{{inputText.length}}/{{maxLength}}</text>
+  </view>
+
+  <button
+    class="btn-primary"
+    bindtap="onTranslate"
+    loading="{{loading}}"
+    disabled="{{loading || !canSubmit}}"
+  >
+    {{loading ? '翻译中…' : '开始翻译'}}
+  </button>
+
+  <view class="disclaimer" wx:if="{{mode === 'fun'}}">
+    娱乐版仅供吐槽解压，内容虚构幽默，勿对号入座。
+  </view>
+  <view class="disclaimer" wx:else>
+    正经版帮你拆解真实诉求，不确定处会标注为假设。
+  </view>
+</view>

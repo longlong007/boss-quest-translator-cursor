@@ -1,0 +1,16 @@
+<view class="mode-switch">
+  <view
+    class="mode-item {{value === 'serious' ? 'active' : ''}}"
+    data-mode="serious"
+    bindtap="onTap"
+  >
+    正经版
+  </view>
+  <view
+    class="mode-item {{value === 'fun' ? 'active' : ''}}"
+    data-mode="fun"
+    bindtap="onTap"
+  >
+    娱乐版
+  </view>
+</view>
